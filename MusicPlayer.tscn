@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmg4snsxkj4xd"]
+
+[ext_resource type="AudioStream" uid="uid://cf0xcx1xvtb1k" path="res://Music/ForestLab.mp3" id="1_j0hmv"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_j0hmv")
+autoplay = true
