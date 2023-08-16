@@ -11,7 +11,8 @@ var target_velocity = Vector3.ZERO
 func _physics_process(delta):
 	# create a locakl variable to store input direction
 	var direction = Vector3.ZERO
-	
+	# get camera direction
+	var hRot =$CameraController.transform.basis.get_euler().y
 	# check for each move input and update the direction accordingly
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
@@ -25,7 +26,8 @@ func _physics_process(delta):
 		direction.z -= 1
 		
 	if direction != Vector3.ZERO:
-		direction = direction.normalized()
+		# this line of code gets diretion relative to the camera direction
+		direction = direction.rotated(Vector3.UP, hRot).normalized()
 		$Pivot.look_at(position + direction, Vector3.UP)
 		
 	

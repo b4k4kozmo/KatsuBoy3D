@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2r0vwmkgn62w"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_alia7"]
+[ext_resource type="PackedScene" uid="uid://cqjk0kud3deb4" path="res://Art/KatsuBoi.glb" id="2_glb3g"]
+[ext_resource type="Script" path="res://Player/CameraController.gd" id="3_m5t11"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8jbsg"]
+radius = 1.41071
+height = 8.95316
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_alia7")
+fall_acceleration = 77
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+
+[node name="KatsuBoi" parent="Pivot" instance=ExtResource("2_glb3g")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41297, 0)
+shape = SubResource("CapsuleShape3D_8jbsg")
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("3_m5t11")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.66961, -1.94783)
+spring_length = 21.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D"]
