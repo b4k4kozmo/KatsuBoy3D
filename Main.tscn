@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm0xtp5kknpig"]
+[gd_scene load_steps=6 format=3 uid="uid://bm0xtp5kknpig"]
 
 [ext_resource type="PackedScene" uid="uid://d2r0vwmkgn62w" path="res://Player/Player.tscn" id="1_cbqnw"]
+[ext_resource type="PackedScene" uid="uid://bf0t5wyx65krj" path="res://Pause.tscn" id="2_xpdkv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_frqal"]
 size = Vector3(120, 2, 120)
@@ -68,3 +69,8 @@ transform = Transform3D(1, 0, 0, 0, 0.96155, 0.274631, 0, -0.274631, 0.96155, 0,
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9242, 0.0589846, 0.377328, -0.321046, 0.655099, 0.683941, -0.206845, -0.753237, 0.624379, 0.528847, 8.36707, 61.8775)
 light_energy = 3.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_xpdkv")]
+
+[connection signal="gameNotPaused" from="CanvasLayer" to="Player" method="_on_canvas_layer_game_not_paused"]
+[connection signal="gamePaused" from="CanvasLayer" to="Player" method="_on_canvas_layer_game_paused"]

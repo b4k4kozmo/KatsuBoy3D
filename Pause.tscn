@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf0t5wyx65krj"]
+
+[ext_resource type="Script" path="res://Pause.gd" id="1_5hq45"]
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource("1_5hq45")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -565.0
+offset_right = 565.0
+offset_bottom = 626.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "PAUSE"
