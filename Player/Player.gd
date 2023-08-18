@@ -5,6 +5,7 @@ var run_speed = speed * 2
 @export var jump_impulse = 33
 @export var fall_acceleration = 50
 var playerPaused: bool = false
+var playerJumping: bool = false
 
 var target_velocity = Vector3.ZERO
 
@@ -29,9 +30,14 @@ func _physics_process(delta):
 			
 		if direction != Vector3.ZERO:
 			# this line of code gets diretion relative to the camera direction
+			
 			direction = direction.rotated(Vector3.UP, hRot).normalized()
 			$Pivot.look_at(position + direction, Vector3.UP)
-			
+			if playerJumping == false:
+				$Pivot/KatsuBoi_anim/AnimationPlayer.play("walk")
+		if direction == Vector3.ZERO:
+			if playerJumping == false:
+				$Pivot/KatsuBoi_anim/AnimationPlayer.play("idle")
 		
 		
 		# Ground velocity
@@ -43,6 +49,8 @@ func _physics_process(delta):
 			target_velocity.z = direction.z * speed
 		# Vertical velocity
 		if not is_on_floor(): # if in the air fall to the floor (gravity)
+			playerJumping = true
+			$Pivot/KatsuBoi_anim/AnimationPlayer.play("jump")
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
 		# moving the character
@@ -51,7 +59,10 @@ func _physics_process(delta):
 		
 		# jumping
 		if is_on_floor() and Input.is_action_just_pressed("jump"):
+			
 			target_velocity.y = jump_impulse
+		if is_on_floor():
+			playerJumping = false
 
 
 func _on_canvas_layer_game_paused():

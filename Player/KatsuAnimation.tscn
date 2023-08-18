@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwb0s1kdsy4yv"]
+
+[ext_resource type="PackedScene" uid="uid://btpx6t2ks51x0" path="res://Art/KatsuBoi_anim.glb" id="1_sxtcq"]
+
+[node name="KatsuBoi_anim" instance=ExtResource("1_sxtcq")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0395875, 0, 0, 0.999216)
+bones/1/rotation = Quaternion(0.048766, 0.0966786, 0.0874768, 0.990264)
+bones/4/rotation = Quaternion(1.03532e-07, 1.18794e-07, -0.379306, 0.925271)
+bones/8/rotation = Quaternion(1.13068e-07, -1.16855e-07, 0.414242, 0.910167)
+bones/13/rotation = Quaternion(2.81857e-09, 1.82111e-11, 0.0838831, 0.996476)

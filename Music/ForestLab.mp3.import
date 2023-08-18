@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ForestLab.mp3-50a2d4c85339df3dbdec7cb718b8791
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
