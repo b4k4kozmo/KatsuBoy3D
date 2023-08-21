@@ -8,7 +8,7 @@ var playerPaused: bool = false
 var playerJumping: bool = false
 
 var target_velocity = Vector3.ZERO
-
+var currentNPC
 
 func _physics_process(delta):
 	if not playerPaused:
@@ -53,6 +53,10 @@ func _physics_process(delta):
 			$Pivot/KatsuBoi_anim/AnimationPlayer.play("jump")
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
+		if currentNPC != null:
+			if Input.is_action_just_pressed("interact"):
+				currentNPC.dialogue()
+		
 		# moving the character
 		velocity = target_velocity
 		move_and_slide()
@@ -71,3 +75,12 @@ func _on_canvas_layer_game_paused():
 
 func _on_canvas_layer_game_not_paused():
 	playerPaused = false
+
+
+
+func _on_npc_detector_body_entered(body):
+	currentNPC = body
+
+
+func _on_npc_detector_body_exited(body):
+	currentNPC = null

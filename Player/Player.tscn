@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2r0vwmkgn62w"]
+[gd_scene load_steps=6 format=3 uid="uid://d2r0vwmkgn62w"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_alia7"]
 [ext_resource type="PackedScene" uid="uid://dwb0s1kdsy4yv" path="res://Player/KatsuAnimation.tscn" id="2_gqlfo"]
@@ -8,7 +8,11 @@
 radius = 1.41071
 height = 8.95316
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0wbdt"]
+radius = 3.96428
+
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 14
 script = ExtResource("1_alia7")
 fall_acceleration = 77
 
@@ -30,3 +34,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.66961, -1.94783)
 spring_length = 21.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D"]
+
+[node name="NpcDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2689, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcDetector"]
+shape = SubResource("CylinderShape3D_0wbdt")
+
+[connection signal="body_entered" from="NpcDetector" to="." method="_on_npc_detector_body_entered"]
+[connection signal="body_exited" from="NpcDetector" to="." method="_on_npc_detector_body_exited"]
