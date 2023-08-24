@@ -68,7 +68,16 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NpcDetector"]
 shape = SubResource("CylinderShape3D_0wbdt")
 
+[node name="MobDetector" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41297, 0)
+shape = SubResource("CapsuleShape3D_8jbsg")
+
 [connection signal="body_entered" from="NpcDetector" to="." method="_on_npc_detector_body_entered"]
 [connection signal="body_exited" from="NpcDetector" to="." method="_on_npc_detector_body_exited"]
+[connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
+[connection signal="body_exited" from="MobDetector" to="." method="_on_mob_detector_body_exited"]
 
 [editable path="Pivot/KatsuBoi_anim"]

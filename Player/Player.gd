@@ -6,9 +6,12 @@ extends CharacterBody3D
 var run_speed = speed * 2
 @export var jump_impulse = 33
 @export var fall_acceleration = 50
+var mobKnockBack = 0
+
 var playerPaused: bool = false
 var playerJumping: bool = false
 var playerAttacking: bool = false
+var canMove: bool = true
 
 var target_velocity = Vector3.ZERO
 var currentNPC
@@ -28,23 +31,24 @@ func _physics_process(delta):
 			playerAttacking = false
 			
 		# check for each move input and update the direction accordingly
-		if Input.is_action_pressed("move_right"):
-			direction.x += 1
-		if Input.is_action_pressed("move_left"):
-			direction.x -= 1
-		
-		# x and z are the ground plane in 3D
-		if Input.is_action_pressed("move_back"):
-			direction.z += 1
-		if Input.is_action_pressed("move_forward"):
-			direction.z -= 1
+		if canMove == true:
+			if Input.is_action_pressed("move_right"):
+				direction.x += 1
+			if Input.is_action_pressed("move_left"):
+				direction.x -= 1
+			
+			# x and z are the ground plane in 3D
+			if Input.is_action_pressed("move_back"):
+				direction.z += 1
+			if Input.is_action_pressed("move_forward"):
+				direction.z -= 1
 			
 		if direction != Vector3.ZERO:
 			# this line of code gets diretion relative to the camera direction
 			
 			direction = direction.rotated(Vector3.UP, hRot).normalized()
 			$Pivot.look_at(position + direction, Vector3.UP)
-			if playerJumping == false:
+			if playerJumping == false and playerAttacking == false:
 				#set plzyerAtacking to false when walking
 				$Pivot/KatsuBoi_anim/AnimationPlayer.play("walk")
 				playerAttacking = false
@@ -74,8 +78,13 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("interact"):
 				currentNPC.dialogue()
 		
+		
+		
+		
 		# moving the character
 		velocity = target_velocity
+		
+		
 		move_and_slide()
 		
 		# jumping
@@ -89,11 +98,18 @@ func _physics_process(delta):
 		if playerAttacking == false:
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.hide()
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D/CollisionShape3D.disabled = true
+			canMove = true
 		if playerAttacking:
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.show()
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D/CollisionShape3D.disabled = false
+			canMove = false
 			
+		if health <= 0:
+			die()
 
+
+func die():
+	queue_free()
 
 func _on_canvas_layer_game_paused():
 	playerPaused = true
@@ -114,3 +130,14 @@ func _on_npc_detector_body_entered(body):
 func _on_npc_detector_body_exited(_body):
 	#sets currentNPC to null
 	currentNPC = null
+
+
+func _on_mob_detector_body_entered(body):
+	print_debug(body)
+	health -= body.atk
+	print_debug(health)
+	mobKnockBack = body.knockBack
+
+
+func _on_mob_detector_body_exited(_body):
+	pass
