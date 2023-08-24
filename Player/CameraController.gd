@@ -8,7 +8,7 @@ func _ready():
 	#makes mouse cursor dissapeer
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _process(delta):
+func _process(_delta):
 	global_position = $"..".global_position
 
 func _input(event):

@@ -6,6 +6,7 @@ var run_speed = speed * 2
 @export var fall_acceleration = 50
 var playerPaused: bool = false
 var playerJumping: bool = false
+var playerAttacking: bool = false
 
 var target_velocity = Vector3.ZERO
 var currentNPC
@@ -16,6 +17,13 @@ func _physics_process(delta):
 		var direction = Vector3.ZERO
 		# get camera direction
 		var hRot =$CameraController.transform.basis.get_euler().y
+		#ttack animation
+		if Input.is_action_just_pressed("attack"):
+			playerAttacking = true
+			$Pivot/KatsuBoi_anim/AnimationPlayer.play("combat")
+			await $Pivot/KatsuBoi_anim/AnimationPlayer.animation_finished
+			playerAttacking = false
+			
 		# check for each move input and update the direction accordingly
 		if Input.is_action_pressed("move_right"):
 			direction.x += 1
@@ -35,8 +43,9 @@ func _physics_process(delta):
 			$Pivot.look_at(position + direction, Vector3.UP)
 			if playerJumping == false:
 				$Pivot/KatsuBoi_anim/AnimationPlayer.play("walk")
+				playerAttacking = false
 		if direction == Vector3.ZERO:
-			if playerJumping == false:
+			if playerJumping == false and playerAttacking == false:
 				$Pivot/KatsuBoi_anim/AnimationPlayer.play("idle")
 		
 		
@@ -50,6 +59,7 @@ func _physics_process(delta):
 		# Vertical velocity
 		if not is_on_floor(): # if in the air fall to the floor (gravity)
 			playerJumping = true
+			playerAttacking = false
 			$Pivot/KatsuBoi_anim/AnimationPlayer.play("jump")
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
@@ -67,6 +77,11 @@ func _physics_process(delta):
 			target_velocity.y = jump_impulse
 		if is_on_floor():
 			playerJumping = false
+		if playerAttacking == false:
+			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.hide()
+		if playerAttacking:
+			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.show()
+			
 
 
 func _on_canvas_layer_game_paused():
@@ -82,5 +97,5 @@ func _on_npc_detector_body_entered(body):
 	currentNPC = body
 
 
-func _on_npc_detector_body_exited(body):
+func _on_npc_detector_body_exited(_body):
 	currentNPC = null
