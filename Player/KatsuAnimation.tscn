@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwb0s1kdsy4yv"]
+[gd_scene load_steps=9 format=3 uid="uid://dwb0s1kdsy4yv"]
 
 [ext_resource type="PackedScene" uid="uid://btpx6t2ks51x0" path="res://Art/KatsuBoi_anim.glb" id="1_sxtcq"]
+[ext_resource type="Script" path="res://Player/Kamibokken3D.gd" id="2_rdeh8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yomc3"]
 radius = 0.151724
@@ -125,20 +126,21 @@ bones/17/rotation = Quaternion(0.0278683, 0.0425852, -0.242213, 0.968888)
 bones/18/rotation = Quaternion(-0.013144, -0.0164031, 0.643233, 0.765382)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.207361, 0.745502, -0.633426, 0.947803, -0.313424, -0.0586031, -0.242219, -0.588211, -0.771581, 1.78707, 0.964238, 1.55094)
+transform = Transform3D(0.207361, 0.745501, -0.633427, 0.947803, -0.313424, -0.0586029, -0.24222, -0.588212, -0.77158, 1.78707, 0.964238, 1.55094)
 bone_name = "Hand.R"
 bone_idx = 10
 
-[node name="Area3D" type="Area3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" groups=["weapon"]]
+[node name="Kamibokken3D" type="Area3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" groups=["weapon"]]
 transform = Transform3D(0.891007, -0.453991, -6.28624e-08, -0.453991, -0.891007, 1.33378e-09, -1.02507e-07, -5.74012e-09, -1, 2.02283, -0.624922, -0.403984)
 collision_layer = 16
 collision_mask = 4
+script = ExtResource("2_rdeh8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D" index="0"]
 transform = Transform3D(1, -8.53571e-08, 6.85308e-08, 8.53571e-08, 0.216099, -0.976371, 6.85308e-08, 0.976371, 0.216099, -2.451, 0.561578, 2.47311)
 shape = SubResource("CapsuleShape3D_yomc3")
 
-[node name="Kamibokken" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D/Area3D" index="1"]
+[node name="Kamibokken" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D" index="1"]
 transform = Transform3D(-0.0996562, 0.032157, -0.00738013, 0.00648478, -0.170733, -0.0977664, -0.00515679, -0.836141, 0.0196792, -2.32226, 0.109926, -2.03018e-07)
 mesh = SubResource("ArrayMesh_0a8by")
 skeleton = NodePath("")

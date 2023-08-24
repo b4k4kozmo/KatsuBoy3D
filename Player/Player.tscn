@@ -44,7 +44,7 @@ bones/17/rotation = Quaternion(9.74304e-09, -1.11621e-08, -0.0830455, 0.996546)
 bones/18/rotation = Quaternion(-8.01552e-08, 1.18797e-08, 0.657604, 0.753364)
 
 [node name="BoneAttachment3D" parent="Pivot/KatsuBoi_anim/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.890844, -0.45431, 3.57531e-07, 0.453677, -0.889603, 0.0527578, -0.0239681, 0.0469991, 0.998607, -1.75405, 0.42863, -0.0226452)
+transform = Transform3D(-0.890843, -0.454311, 3.57531e-07, 0.453678, -0.889603, 0.0527578, -0.0239681, 0.0469991, 0.998607, -1.75405, 0.428631, -0.0226452)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41297, 0)

@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
+
 @export var speed = 21
+@export var health = 12
 var run_speed = speed * 2
 @export var jump_impulse = 33
 @export var fall_acceleration = 50
@@ -21,6 +23,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("attack"):
 			playerAttacking = true
 			$Pivot/KatsuBoi_anim/AnimationPlayer.play("combat")
+			#wait for animation to end before setting playerAttacking to false
 			await $Pivot/KatsuBoi_anim/AnimationPlayer.animation_finished
 			playerAttacking = false
 			
@@ -42,15 +45,18 @@ func _physics_process(delta):
 			direction = direction.rotated(Vector3.UP, hRot).normalized()
 			$Pivot.look_at(position + direction, Vector3.UP)
 			if playerJumping == false:
+				#set plzyerAtacking to false when walking
 				$Pivot/KatsuBoi_anim/AnimationPlayer.play("walk")
 				playerAttacking = false
 		if direction == Vector3.ZERO:
 			if playerJumping == false and playerAttacking == false:
+				#play idle animation when not jumping or attacking
 				$Pivot/KatsuBoi_anim/AnimationPlayer.play("idle")
 		
 		
 		# Ground velocity
 		if Input.is_action_pressed("run"):
+			#if run is held increase walk speed
 			target_velocity.x = direction.x * run_speed
 			target_velocity.z = direction.z * run_speed
 		else:
@@ -64,6 +70,7 @@ func _physics_process(delta):
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
 		if currentNPC != null:
+			#interact with npcs to trigger their dialogue or action functions
 			if Input.is_action_just_pressed("interact"):
 				currentNPC.dialogue()
 		
@@ -77,10 +84,14 @@ func _physics_process(delta):
 			target_velocity.y = jump_impulse
 		if is_on_floor():
 			playerJumping = false
+		
+		# logic for hiding/showing weapon based on attacking state
 		if playerAttacking == false:
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.hide()
+			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D/CollisionShape3D.disabled = true
 		if playerAttacking:
 			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D.show()
+			$Pivot/KatsuBoi_anim/Armature/Skeleton3D/BoneAttachment3D/Kamibokken3D/CollisionShape3D.disabled = false
 			
 
 
@@ -94,8 +105,12 @@ func _on_canvas_layer_game_not_paused():
 
 
 func _on_npc_detector_body_entered(body):
+	#detects if you are in range with an npc
+	#and sets currentNPC to NPC
 	currentNPC = body
+	print_debug(currentNPC)
 
 
 func _on_npc_detector_body_exited(_body):
+	#sets currentNPC to null
 	currentNPC = null
