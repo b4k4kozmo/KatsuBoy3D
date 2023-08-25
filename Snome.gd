@@ -8,9 +8,9 @@ var tempKnockBack = 0
 var direction
 var fall_acceleration = 50
 var atk = 1
-var knockBack = 50
+var knockBack = 300
 @onready var mesh = $Pivot
-@export var speed = 2
+@export var speed = 5
 
 func _physics_process(delta):
 	direction = Vector2.ZERO

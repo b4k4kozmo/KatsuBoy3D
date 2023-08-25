@@ -7,6 +7,7 @@ var run_speed = speed * 2
 @export var jump_impulse = 33
 @export var fall_acceleration = 50
 var mobKnockBack = 0
+var currentEnemy
 
 var playerPaused: bool = false
 var playerJumping: bool = false
@@ -84,6 +85,9 @@ func _physics_process(delta):
 		# moving the character
 		velocity = target_velocity
 		
+		if currentEnemy != null:
+			takeDamage(currentEnemy)
+			takeKnockBack(currentEnemy, mobKnockBack)
 		
 		move_and_slide()
 		
@@ -134,10 +138,21 @@ func _on_npc_detector_body_exited(_body):
 
 func _on_mob_detector_body_entered(body):
 	print_debug(body)
-	health -= body.atk
 	print_debug(health)
 	mobKnockBack = body.knockBack
+	currentEnemy = body
+	
 
 
 func _on_mob_detector_body_exited(_body):
-	pass
+	currentEnemy = null
+	mobKnockBack = 0
+	
+func takeKnockBack(enemy, knockBack):
+	velocity.x = enemy.direction.x * knockBack
+	velocity.z = enemy.direction.z * knockBack
+	
+	
+func takeDamage(enemy):
+	health -= enemy.atk
+	print_debug(health)
