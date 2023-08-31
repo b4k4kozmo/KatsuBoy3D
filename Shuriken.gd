@@ -17,10 +17,11 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	
+	if body.is_in_group("mob"):
+		body.health -= dmg
+		print_debug(body.health)
+		
 	queue_free()
-	
-	print_debug(body.health)
 
 
 
