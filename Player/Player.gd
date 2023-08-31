@@ -6,8 +6,11 @@ extends CharacterBody3D
 var run_speed = speed * 2
 @export var jump_impulse = 33
 @export var fall_acceleration = 50
+@export var Projectile : PackedScene
+
 var mobKnockBack = 0
 var currentEnemy
+
 
 var playerPaused: bool = false
 var playerJumping: bool = false
@@ -15,15 +18,29 @@ var playerAttacking: bool = false
 var canMove: bool = true
 
 var target_velocity = Vector3.ZERO
+var direction
 var currentNPC
 
+
 func _physics_process(delta):
+	#$Projectile.hide()
+	#$Projectile/Shuriken/CollisionShape3D.disabled = true
+
 	if not playerPaused:
-		# create a locakl variable to store input direction
-		var direction = Vector3.ZERO
+		# create a local variable to store input direction
+		direction = Vector3.ZERO
 		# get camera direction
 		var hRot =$CameraController.transform.basis.get_euler().y
 		#ttack animation
+		
+		if Input.is_action_just_pressed("Throw"):
+			throw()
+			
+			
+			
+			
+			
+			
 		if Input.is_action_just_pressed("attack"):
 			playerAttacking = true
 			$Pivot/KatsuBoi_anim/AnimationPlayer.play("combat")
@@ -156,3 +173,10 @@ func takeKnockBack(enemy, knockBack):
 func takeDamage(enemy):
 	health -= enemy.atk
 	print_debug(health)
+
+	
+func throw():
+	var p = Projectile.instantiate() as Area3D
+	
+	p.transform = $Pivot/Projectile.global_transform
+	owner.add_child(p)
