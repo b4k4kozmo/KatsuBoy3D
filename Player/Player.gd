@@ -10,12 +10,14 @@ var run_speed = speed * 2
 
 var mobKnockBack = 0
 var currentEnemy
+var ammo = 10
 
 
 var playerPaused: bool = false
 var playerJumping: bool = false
 var playerAttacking: bool = false
 var canMove: bool = true
+var canThrow: bool = true
 
 var target_velocity = Vector3.ZERO
 var direction
@@ -34,7 +36,9 @@ func _physics_process(delta):
 		#ttack animation
 		
 		if Input.is_action_just_pressed("Throw"):
-			throw()
+			if ammo and canThrow:
+				throw()
+				
 			
 			
 			
@@ -177,6 +181,12 @@ func takeDamage(enemy):
 	
 func throw():
 	var p = Projectile.instantiate() as Area3D
-	
 	p.transform = $Pivot/Projectile.global_transform
 	owner.add_child(p)
+	ammo -= 1
+	canThrow = false
+	$ProjectileCoolDown.start()
+
+
+func _on_projectile_cool_down_timeout():
+	canThrow = true

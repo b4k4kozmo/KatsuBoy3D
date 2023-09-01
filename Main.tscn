@@ -75,9 +75,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0611792, 0)
 jump_impulse = 44
 fall_acceleration = 99
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.96155, 0.274631, 0, -0.274631, 0.96155, 0, 12.1258, 10.2616)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9242, 0.0589846, 0.377328, -0.321046, 0.655099, 0.683941, -0.206845, -0.753237, 0.624379, 0.528847, 8.36707, 61.8775)
 light_energy = 3.0

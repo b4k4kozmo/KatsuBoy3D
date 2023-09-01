@@ -85,9 +85,13 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45705, 0)
 shape = SubResource("CylinderShape3D_42ham")
 
+[node name="ProjectileCoolDown" type="Timer" parent="."]
+wait_time = 0.35
+
 [connection signal="body_entered" from="NpcDetector" to="." method="_on_npc_detector_body_entered"]
 [connection signal="body_exited" from="NpcDetector" to="." method="_on_npc_detector_body_exited"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
 [connection signal="body_exited" from="MobDetector" to="." method="_on_mob_detector_body_exited"]
+[connection signal="timeout" from="ProjectileCoolDown" to="." method="_on_projectile_cool_down_timeout"]
 
 [editable path="Pivot/KatsuBoi_anim"]

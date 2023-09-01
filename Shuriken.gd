@@ -1,7 +1,7 @@
 extends Area3D
 @export var dmg = 5
 @export var knockBack = 150
-@export var speed = 15
+@export var speed = 30
 var direction = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
