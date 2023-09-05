@@ -48,6 +48,7 @@ func _physics_process(delta):
 				velocity.x = direction.x * -tempKnockBack
 				velocity.z = direction.z * -tempKnockBack
 				health -= attackingBody.dmg
+				onSight = true
 				await attackingBody._on_body_entered(self)
 				move_and_slide()
 				
