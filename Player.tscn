@@ -16,7 +16,7 @@ radius = 3.96428
 height = 5.13352
 radius = 2.28533
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_mask = 14
 script = ExtResource("1_alia7")
 fall_acceleration = 77

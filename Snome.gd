@@ -9,6 +9,7 @@ var direction
 var fall_acceleration = 50
 var atk = 1
 var knockBack = 300
+var onSight = false
 
 @onready var mesh = $Pivot
 @export var speed = 5
@@ -46,10 +47,13 @@ func _physics_process(delta):
 				tempKnockBack = attackingBody.knockBack
 				velocity.x = direction.x * -tempKnockBack
 				velocity.z = direction.z * -tempKnockBack
+				health -= attackingBody.dmg
 				await attackingBody._on_body_entered(self)
+				move_and_slide()
 				
 				
-		move_and_slide()
+		if onSight == true:
+			move_and_slide()
 	
 		if health <= 0:
 			die()
@@ -69,3 +73,12 @@ func _on_area_3d_area_entered(area):
 func _on_area_3d_area_exited(_area):
 	attackingBody = null
 
+
+
+func _on_player_detector_body_entered(body):
+	if body.is_in_group("player"):
+		onSight = true
+
+
+func _on_player_detector_body_exited(_body):
+		onSight = false

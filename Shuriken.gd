@@ -17,9 +17,10 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("mob"):
-		body.health -= dmg
+	if body.is_in_group("mob") and body.is_in_group("defense"):
+		body.onSight = true
 		print_debug(body.health)
+		print_debug(body)
 		
 	queue_free()
 
