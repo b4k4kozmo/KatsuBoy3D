@@ -18,6 +18,7 @@ var playerJumping: bool = false
 var playerAttacking: bool = false
 var canMove: bool = true
 var canThrow: bool = true
+var invincible: bool
 
 var target_velocity = Vector3.ZERO
 var direction
@@ -106,7 +107,7 @@ func _physics_process(delta):
 		# moving the character
 		velocity = target_velocity
 		
-		if currentEnemy != null:
+		if currentEnemy != null and not invincible:
 			takeDamage(currentEnemy)
 			takeKnockBack(currentEnemy, mobKnockBack)
 		
@@ -176,6 +177,8 @@ func takeKnockBack(enemy, knockBack):
 	
 func takeDamage(enemy):
 	health -= enemy.atk
+	invincible = true
+	$InvincibilityTimer.start()
 	print_debug(health)
 
 	
@@ -190,3 +193,7 @@ func throw():
 
 func _on_projectile_cool_down_timeout():
 	canThrow = true
+
+
+func _on_invincibility_timer_timeout():
+	invincible = false

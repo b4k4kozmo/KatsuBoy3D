@@ -17,7 +17,7 @@ height = 5.13352
 radius = 2.28533
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_mask = 14
+collision_mask = 10
 script = ExtResource("1_alia7")
 fall_acceleration = 77
 Projectile = ExtResource("4_e3nfu")
@@ -88,10 +88,14 @@ shape = SubResource("CylinderShape3D_42ham")
 [node name="ProjectileCoolDown" type="Timer" parent="."]
 wait_time = 0.35
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="NpcDetector" to="." method="_on_npc_detector_body_entered"]
 [connection signal="body_exited" from="NpcDetector" to="." method="_on_npc_detector_body_exited"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
 [connection signal="body_exited" from="MobDetector" to="." method="_on_mob_detector_body_exited"]
 [connection signal="timeout" from="ProjectileCoolDown" to="." method="_on_projectile_cool_down_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 
 [editable path="Pivot/KatsuBoi_anim"]

@@ -7,7 +7,7 @@ var tempDMG = 0
 var tempKnockBack = 0
 var direction
 var fall_acceleration = 50
-var atk = 1
+var atk = 2
 var knockBack = 300
 var aggro = false
 var playerDetected = false
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		velocity.y -= fall_acceleration * delta
 	
 	var player = get_node("../Player")
-	if player.playerPaused == false:
+	if player and player.playerPaused == false:
 		if player:
 			direction = (player.position - position).normalized()
 			if direction:
@@ -86,7 +86,8 @@ func _on_player_detector_body_entered(body):
 
 func _on_player_detector_body_exited(_body):
 	playerDetected = false
-	$AggroTimer.start()
+	if health>0:
+		$AggroTimer.start()
 
 
 func _on_aggro_timer_timeout():
