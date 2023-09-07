@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm5lx7lkd4y7s"]
+
+[ext_resource type="PackedScene" uid="uid://de3hqub6cqvf7" path="res://Art/Tree.glb" id="1_jl0ue"]
+[ext_resource type="Script" path="res://Environment/StaticTree.gd" id="1_vm8r4"]
+[ext_resource type="PackedScene" uid="uid://bx6qwqbj4jtuy" path="res://Art/Stump.glb" id="2_q48n0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0h6m4"]
+height = 13.5944
+radius = 1.4665
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dxk75"]
+radius = 1.22415
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xah38"]
+height = 5.51339
+radius = 1.5922
+
+[node name="StaticTree" type="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_vm8r4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75576, 0)
+shape = SubResource("CylinderShape3D_0h6m4")
+
+[node name="Tree" parent="." instance=ExtResource("1_jl0ue")]
+
+[node name="Stump" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stump"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0121, 0)
+shape = SubResource("CylinderShape3D_dxk75")
+
+[node name="Stump" parent="Stump" instance=ExtResource("2_q48n0")]
+
+[node name="AxeCollider" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AxeCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71046, 0)
+shape = SubResource("CylinderShape3D_xah38")
+
+[node name="ChopCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="AxeCollider" to="." method="_on_axe_collider_area_entered"]
+[connection signal="timeout" from="ChopCooldown" to="." method="_on_chop_cooldown_timeout"]
