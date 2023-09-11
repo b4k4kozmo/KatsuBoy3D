@@ -40,12 +40,6 @@ func _physics_process(delta):
 			if ammo and canThrow:
 				throw()
 				
-			
-			
-			
-			
-			
-			
 		if Input.is_action_just_pressed("attack"):
 			playerAttacking = true
 			$Pivot/KatsuBoi_anim/AnimationPlayer.play("combat")
