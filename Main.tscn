@@ -80,7 +80,7 @@ fall_acceleration = 99
 transform = Transform3D(0.9242, 0.0589846, 0.377328, -0.321046, 0.655099, 0.683941, -0.206845, -0.753237, 0.624379, 0.528847, 8.36707, 61.8775)
 light_energy = 3.0
 
-[node name="CanvasLayer" parent="." instance=ExtResource("2_xpdkv")]
+[node name="Pause" parent="." instance=ExtResource("2_xpdkv")]
 
 [node name="Frogness" parent="." instance=ExtResource("3_t0cp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.15734, -57.7404)
@@ -97,5 +97,5 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -7.86107)
 [node name="StaticTree3" parent="." instance=ExtResource("6_0wx41")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -17.7314)
 
-[connection signal="gameNotPaused" from="CanvasLayer" to="Player" method="_on_canvas_layer_game_not_paused"]
-[connection signal="gamePaused" from="CanvasLayer" to="Player" method="_on_canvas_layer_game_paused"]
+[connection signal="gameNotPaused" from="Pause" to="Player" method="_on_canvas_layer_game_not_paused"]
+[connection signal="gamePaused" from="Pause" to="Player" method="_on_canvas_layer_game_paused"]
