@@ -22,44 +22,43 @@ func _physics_process(delta):
 		velocity.y -= fall_acceleration * delta
 	
 	var player = get_node("../Player")
-	if player and player.playerPaused == false:
-		if player:
-			direction = (player.position - position).normalized()
-			if direction:
-				if aggro:
-					mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * 10)
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
-		if attackingBody != null:
-			if attackingBody.is_in_group("weapon"):
-				#temp damage takes damagenfrom current weapon and stores it
-				#before the attacking body nuliifies
-				tempDMG = attackingBody.dmg
-				tempKnockBack = attackingBody.knockBack
-				velocity.x = direction.x * -tempKnockBack
-				velocity.z = direction.z * -tempKnockBack
+	if player:
+		direction = (player.position - position).normalized()
+		if direction:
+			if aggro:
+				mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * 10)
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+	if attackingBody != null:
+		if attackingBody.is_in_group("weapon"):
+			#temp damage takes damagenfrom current weapon and stores it
+			#before the attacking body nuliifies
+			tempDMG = attackingBody.dmg
+			tempKnockBack = attackingBody.knockBack
+			velocity.x = direction.x * -tempKnockBack
+			velocity.z = direction.z * -tempKnockBack
 				
-				#wait for weapon to leave the 3D area before nullifying and taking damage
-				await _on_area_3d_area_exited(null)
-				health -= tempDMG
+			#wait for weapon to leave the 3D area before nullifying and taking damage
+			await _on_area_3d_area_exited(null)
+			health -= tempDMG
 				
-				print_debug(health)
+			print_debug(health)
 			
-			elif attackingBody.is_in_group("projectile"):
-				tempKnockBack = attackingBody.knockBack
-				velocity.x = direction.x * -tempKnockBack
-				velocity.z = direction.z * -tempKnockBack
-				health -= attackingBody.dmg
-				aggro = true
-				await attackingBody._on_body_entered(self)
-				move_and_slide()
-				
-				
-		if aggro == true:
+		elif attackingBody.is_in_group("projectile"):
+			tempKnockBack = attackingBody.knockBack
+			velocity.x = direction.x * -tempKnockBack
+			velocity.z = direction.z * -tempKnockBack
+			health -= attackingBody.dmg
+			aggro = true
+			await attackingBody._on_body_entered(self)
 			move_and_slide()
+				
+				
+	if aggro == true:
+		move_and_slide()
 	
-		if health <= 0:
-			die()
+	if health <= 0:
+		die()
 		
 
 func die():

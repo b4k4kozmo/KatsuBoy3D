@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cof7g1vdsaky4" path="res://Art/InventoryRect.png" id="2_dvk2w"]
 
 [node name="Pause" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_5hq45")
 
 [node name="Control" type="Control" parent="."]

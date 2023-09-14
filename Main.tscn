@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm0xtp5kknpig"]
+[gd_scene load_steps=12 format=3 uid="uid://bm0xtp5kknpig"]
 
 [ext_resource type="PackedScene" uid="uid://d2r0vwmkgn62w" path="res://Player.tscn" id="1_cbqnw"]
 [ext_resource type="Script" path="res://Main.gd" id="1_iu3xl"]
 [ext_resource type="PackedScene" uid="uid://bf0t5wyx65krj" path="res://Pause.tscn" id="2_xpdkv"]
 [ext_resource type="PackedScene" uid="uid://bam1sqaulnsd" path="res://Frogness.tscn" id="3_t0cp6"]
+[ext_resource type="PackedScene" uid="uid://d3rwubp3v84g0" path="res://InventoryGui.tscn" id="4_l3yr5"]
 [ext_resource type="PackedScene" uid="uid://bkwj10icxt5ny" path="res://Snome.tscn" id="5_e8ds7"]
 [ext_resource type="PackedScene" uid="uid://cm5lx7lkd4y7s" path="res://Environment/StaticTree.tscn" id="6_0wx41"]
+[ext_resource type="Script" path="res://UI.gd" id="7_llngi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_frqal"]
 size = Vector3(120, 2, 120)
@@ -97,5 +99,24 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -7.86107)
 [node name="StaticTree3" parent="." instance=ExtResource("6_0wx41")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -17.7314)
 
-[connection signal="gameNotPaused" from="Pause" to="Player" method="_on_canvas_layer_game_not_paused"]
-[connection signal="gamePaused" from="Pause" to="Player" method="_on_canvas_layer_game_paused"]
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("7_llngi")
+
+[node name="InventoryGui" parent="UI" instance=ExtResource("4_l3yr5")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -660.0
+offset_top = -324.0
+offset_right = 660.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gameNotPaused" from="Pause" to="." method="_on_pause_game_not_paused"]
+[connection signal="gamePaused" from="Pause" to="." method="_on_pause_game_paused"]
+[connection signal="closed" from="UI/InventoryGui" to="." method="_on_inventory_gui_closed"]
+[connection signal="opened" from="UI/InventoryGui" to="." method="_on_inventory_gui_opened"]
