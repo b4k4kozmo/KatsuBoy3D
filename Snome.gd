@@ -21,7 +21,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= fall_acceleration * delta
 	
-	var player = get_node("../Player")
+	var player = $"../../Player"
 	if player:
 		direction = (player.position - position).normalized()
 		if direction:

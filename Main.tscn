@@ -1,122 +1,48 @@
-[gd_scene load_steps=12 format=3 uid="uid://bm0xtp5kknpig"]
+[gd_scene load_steps=6 format=3 uid="uid://bm0xtp5kknpig"]
 
-[ext_resource type="PackedScene" uid="uid://d2r0vwmkgn62w" path="res://Player.tscn" id="1_cbqnw"]
 [ext_resource type="Script" path="res://Main.gd" id="1_iu3xl"]
-[ext_resource type="PackedScene" uid="uid://bf0t5wyx65krj" path="res://Pause.tscn" id="2_xpdkv"]
-[ext_resource type="PackedScene" uid="uid://bam1sqaulnsd" path="res://Frogness.tscn" id="3_t0cp6"]
+[ext_resource type="PackedScene" uid="uid://cmnob5au0h6p5" path="res://level0.tscn" id="2_0kcwx"]
 [ext_resource type="PackedScene" uid="uid://d3rwubp3v84g0" path="res://InventoryGui.tscn" id="4_l3yr5"]
-[ext_resource type="PackedScene" uid="uid://bkwj10icxt5ny" path="res://Snome.tscn" id="5_e8ds7"]
-[ext_resource type="PackedScene" uid="uid://cm5lx7lkd4y7s" path="res://Environment/StaticTree.tscn" id="6_0wx41"]
+[ext_resource type="PackedScene" uid="uid://bf0t5wyx65krj" path="res://PauseGui.tscn" id="5_68p0f"]
 [ext_resource type="Script" path="res://UI.gd" id="7_llngi"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_frqal"]
-size = Vector3(120, 2, 120)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixwcs"]
-albedo_color = Color(0.486275, 0, 0.490196, 1)
-metallic = 0.62
-metallic_texture_channel = 1
-
-[sub_resource type="BoxMesh" id="BoxMesh_mpsft"]
-material = SubResource("StandardMaterial3D_ixwcs")
-size = Vector3(120, 2, 120)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_iu3xl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12479, 0)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_frqal")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_mpsft")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 6.80177, -52.9055)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -2, 2.08165e-12)
-shape = SubResource("BoxShape3D_frqal")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98364, 0)
-mesh = SubResource("BoxMesh_mpsft")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 10.4757, -87.1239)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -2, 2.08165e-12)
-shape = SubResource("BoxShape3D_frqal")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98364, 0)
-mesh = SubResource("BoxMesh_mpsft")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 17.7702, 13.9451, -134.008)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
-shape = SubResource("BoxShape3D_frqal")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98364, 0)
-mesh = SubResource("BoxMesh_mpsft")
-
-[node name="Player" parent="." instance=ExtResource("1_cbqnw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0611792, 0)
-jump_impulse = 44
-fall_acceleration = 99
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9242, 0.0589846, 0.377328, -0.321046, 0.655099, 0.683941, -0.206845, -0.753237, 0.624379, 0.528847, 8.36707, 61.8775)
-light_energy = 3.0
-
-[node name="Pause" parent="." instance=ExtResource("2_xpdkv")]
-
-[node name="Frogness" parent="." instance=ExtResource("3_t0cp6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.15734, -57.7404)
-
-[node name="Snome" parent="." instance=ExtResource("5_e8ds7")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -14.1803)
-
-[node name="StaticTree" parent="." instance=ExtResource("6_0wx41")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, 0)
-
-[node name="StaticTree2" parent="." instance=ExtResource("6_0wx41")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -7.86107)
-
-[node name="StaticTree3" parent="." instance=ExtResource("6_0wx41")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3513, 0, -17.7314)
+[node name="Level0" parent="." instance=ExtResource("2_0kcwx")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("7_llngi")
 
 [node name="InventoryGui" parent="UI" instance=ExtResource("4_l3yr5")]
+custom_minimum_size = Vector2(1320, 806)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -660.0
-offset_top = -324.0
+offset_top = -415.5
 offset_right = 660.0
-offset_bottom = 324.0
+offset_bottom = 415.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="gameNotPaused" from="Pause" to="." method="_on_pause_game_not_paused"]
-[connection signal="gamePaused" from="Pause" to="." method="_on_pause_game_paused"]
+[node name="PauseGui" parent="UI" instance=ExtResource("5_68p0f")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.5
+offset_top = -518.0
+offset_right = 346.5
+offset_bottom = 518.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="closed" from="UI/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="UI/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[connection signal="closed" from="UI/PauseGui" to="." method="_on_pause_gui_closed"]
+[connection signal="opened" from="UI/PauseGui" to="." method="_on_pause_gui_opened"]

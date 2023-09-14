@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf0t5wyx65krj"]
+
+[ext_resource type="Script" path="res://PauseGui.gd" id="1_s74wk"]
+[ext_resource type="Texture2D" uid="uid://cof7g1vdsaky4" path="res://Art/InventoryRect.png" id="2_kkmiw"]
+
+[node name="PauseGui" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 693.0
+offset_bottom = 1036.0
+script = ExtResource("1_s74wk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.0
+offset_right = 163.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.52549, 0.729412, 0.52549, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "PAUSE"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -878.0
+offset_right = 290.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_kkmiw")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
