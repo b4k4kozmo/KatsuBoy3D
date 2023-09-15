@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://b76pq1ycgbhoe"]
+
+[ext_resource type="Resource" uid="uid://bqdjlj14d3kfn" path="res://Inventory/Items/KamiAxe.tres" id="1_hblar"]
+[ext_resource type="Script" path="res://Inventory/Inventory.gd" id="2_qwk4w"]
+
+[resource]
+script = ExtResource("2_qwk4w")
+items = Array[Resource("res://Inventory/InventoryItem.gd")]([ExtResource("1_hblar"), ExtResource("1_hblar"), ExtResource("1_hblar"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, ExtResource("1_hblar"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

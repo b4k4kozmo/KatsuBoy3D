@@ -8,6 +8,8 @@ var run_speed = speed * 2
 @export var fall_acceleration = 50
 @export var Projectile : PackedScene
 
+@export var inventory: Inventory
+
 var mobKnockBack = 0
 var currentEnemy
 var ammo = 10
@@ -178,3 +180,9 @@ func _on_projectile_cool_down_timeout():
 
 func _on_invincibility_timer_timeout():
 	invincible = false
+
+
+func _on_collectable_detector_area_entered(area):
+	print_debug(area)
+	if area.has_method("collect"):
+		area.collect()

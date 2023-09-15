@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmnob5au0h6p5"]
+[gd_scene load_steps=9 format=3 uid="uid://cmnob5au0h6p5"]
 
 [ext_resource type="PackedScene" uid="uid://d2r0vwmkgn62w" path="res://Player.tscn" id="1_f0o84"]
 [ext_resource type="PackedScene" uid="uid://cm5lx7lkd4y7s" path="res://Environment/StaticTree.tscn" id="2_i87kr"]
 [ext_resource type="PackedScene" uid="uid://bkwj10icxt5ny" path="res://Snome.tscn" id="3_22553"]
 [ext_resource type="PackedScene" uid="uid://bam1sqaulnsd" path="res://Frogness.tscn" id="4_dhnip"]
+[ext_resource type="PackedScene" uid="uid://bch1iit73tsb5" path="res://KamiAxe.tscn" id="5_4ed2f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_frqal"]
 size = Vector3(120, 2, 120)
@@ -97,3 +98,8 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -14.1803)
 
 [node name="Frogness" parent="NPCs" instance=ExtResource("4_dhnip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.15734, -57.7404)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="KamiAxe" parent="Items" instance=ExtResource("5_4ed2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2025, 17.7207)

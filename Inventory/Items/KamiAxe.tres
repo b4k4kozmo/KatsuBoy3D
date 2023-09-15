@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bqdjlj14d3kfn"]
+
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="1_u4q2b"]
+[ext_resource type="Texture2D" uid="uid://cl1xjs7fvck4p" path="res://Art/kamiAxeIcon.png" id="2_s08i3"]
+
+[resource]
+script = ExtResource("1_u4q2b")
+name = "KamiAxe"
+texture = ExtResource("2_s08i3")
