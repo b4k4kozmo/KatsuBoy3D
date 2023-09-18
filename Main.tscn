@@ -15,20 +15,6 @@ script = ExtResource("1_iu3xl")
 process_mode = 3
 script = ExtResource("7_llngi")
 
-[node name="InventoryGui" parent="UI" instance=ExtResource("4_l3yr5")]
-custom_minimum_size = Vector2(1320, 806)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -660.0
-offset_top = -415.5
-offset_right = 660.0
-offset_bottom = 415.5
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="PauseGui" parent="UI" instance=ExtResource("5_68p0f")]
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,7 +28,20 @@ offset_bottom = 518.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="closed" from="UI/InventoryGui" to="." method="_on_inventory_gui_closed"]
-[connection signal="opened" from="UI/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[node name="InventoryGui" parent="UI" instance=ExtResource("4_l3yr5")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -660.0
+offset_top = -403.0
+offset_right = 660.0
+offset_bottom = 403.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="closed" from="UI/PauseGui" to="." method="_on_pause_gui_closed"]
 [connection signal="opened" from="UI/PauseGui" to="." method="_on_pause_gui_opened"]
+[connection signal="closed" from="UI/InventoryGui" to="." method="_on_inventory_gui_closed"]
+[connection signal="opened" from="UI/InventoryGui" to="." method="_on_inventory_gui_opened"]

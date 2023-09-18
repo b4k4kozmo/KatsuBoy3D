@@ -18,8 +18,8 @@ height = 5.13352
 radius = 2.28533
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxnbf"]
-radius = 5.75381
-height = 11.7411
+radius = 2.13517
+height = 9.4158
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_mask = 10

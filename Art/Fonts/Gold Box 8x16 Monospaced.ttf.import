@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://kxpymuyh8sin"
+path="res://.godot/imported/Gold Box 8x16 Monospaced.ttf-d1948c717137921b8d7eeddc7a062530.fontdata"
+
+[deps]
+
+source_file="res://Art/Fonts/Gold Box 8x16 Monospaced.ttf"
+dest_files=["res://.godot/imported/Gold Box 8x16 Monospaced.ttf-d1948c717137921b8d7eeddc7a062530.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

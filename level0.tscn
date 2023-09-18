@@ -101,5 +101,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.15734, -57.7404)
 
 [node name="Items" type="Node3D" parent="."]
 
+[node name="KamiAxe5" parent="Items" instance=ExtResource("5_4ed2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9149, 10.0197)
+
 [node name="KamiAxe" parent="Items" instance=ExtResource("5_4ed2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2025, 17.7207)
+
+[node name="KamiAxe2" parent="Items" instance=ExtResource("5_4ed2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53088, 2.16018, 17.0181)
+
+[node name="KamiAxe3" parent="Items" instance=ExtResource("5_4ed2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7234, 13.3145)
+
+[node name="KamiAxe4" parent="Items" instance=ExtResource("5_4ed2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8913, 1.97719, 0)

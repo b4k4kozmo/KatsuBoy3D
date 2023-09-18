@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b104xa6lg6s6e"]
+[gd_scene load_steps=4 format=3 uid="uid://b104xa6lg6s6e"]
 
 [ext_resource type="Texture2D" uid="uid://b6ixubsf27dlr" path="res://Art/InventorySlot.png" id="1_opdsh"]
 [ext_resource type="Script" path="res://Slot.gd" id="1_ya2rc"]
+[ext_resource type="FontFile" uid="uid://kxpymuyh8sin" path="res://Art/Fonts/Gold Box 8x16 Monospaced.ttf" id="3_2i1p5"]
 
 [node name="Slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -26,3 +27,16 @@ layout_mode = 2
 
 [node name="Item" type="Sprite2D" parent="CenterContainer/Panel"]
 position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 50.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.937255, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.00784314, 0.168627, 1)
+theme_override_fonts/font = ExtResource("3_2i1p5")
+theme_override_font_sizes/font_size = 48
+text = "99"
+horizontal_alignment = 2

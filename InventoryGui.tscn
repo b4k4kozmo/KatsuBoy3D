@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3rwubp3v84g0"]
+[gd_scene load_steps=5 format=3 uid="uid://d3rwubp3v84g0"]
 
 [ext_resource type="Texture2D" uid="uid://cof7g1vdsaky4" path="res://Art/InventoryRect.png" id="1_0pwe1"]
 [ext_resource type="Script" path="res://InventoryGui.gd" id="1_a3xns"]
+[ext_resource type="FontFile" uid="uid://kxpymuyh8sin" path="res://Art/Fonts/Gold Box 8x16 Monospaced.ttf" id="2_8wj3e"]
 [ext_resource type="PackedScene" uid="uid://b104xa6lg6s6e" path="res://Slot.tscn" id="2_pm1wr"]
 
 [node name="InventoryGui" type="Control"]
@@ -13,16 +14,34 @@ offset_right = 1320.0
 offset_bottom = 806.0
 script = ExtResource("1_a3xns")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="LabelBG" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -291.0
-offset_right = 291.0
-offset_bottom = 170.0
+offset_left = -346.0
+offset_right = 346.0
+offset_bottom = 164.0
+grow_horizontal = 2
+texture = ExtResource("1_0pwe1")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LabelBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -279.0
+offset_top = 16.0
+offset_right = 303.0
+offset_bottom = 142.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.52549, 0.729412, 0.52549, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.00784314, 0.168627, 1)
+theme_override_fonts/normal_font = ExtResource("2_8wj3e")
 theme_override_font_sizes/normal_font_size = 100
 text = "INVENTORY"
 
