@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bch1iit73tsb5"]
+[gd_scene load_steps=9 format=3 uid="uid://bch1iit73tsb5"]
 
 [ext_resource type="PackedScene" uid="uid://c1col67s1uiet" path="res://Collectable.tscn" id="1_nw412"]
 [ext_resource type="PackedScene" uid="uid://dkiirydsvrt45" path="res://Art/woodsmansaxe.glb" id="2_rpbpe"]
 [ext_resource type="Script" path="res://KamiAxe.gd" id="2_w0tob"]
+[ext_resource type="Resource" uid="uid://bqdjlj14d3kfn" path="res://Inventory/Items/KamiAxe.tres" id="3_hpxq1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kdax4"]
 resource_local_to_scene = true
@@ -48,6 +49,7 @@ _data = {
 
 [node name="Area3D" parent="." index="0"]
 script = ExtResource("2_w0tob")
+itemRes = ExtResource("3_hpxq1")
 
 [node name="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81774, 0)

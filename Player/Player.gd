@@ -185,4 +185,4 @@ func _on_invincibility_timer_timeout():
 func _on_collectable_detector_area_entered(area):
 	print_debug(area)
 	if area.has_method("collect"):
-		area.collect()
+		area.collect(inventory)
