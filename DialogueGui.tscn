@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://hnnvqtfsxqyu"]
+
+[ext_resource type="Texture2D" uid="uid://dngsghsijx4t1" path="res://Art/DialogueRect.png" id="1_2cf0j"]
+[ext_resource type="Script" path="res://DialogueGui.gd" id="1_kvuv5"]
+[ext_resource type="FontFile" uid="uid://bh5plfe6n48ty" path="res://Art/Fonts/orange kid.ttf" id="2_8j13c"]
+
+[node name="DialogueGui" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kvuv5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1033.0
+offset_top = -554.0
+offset_right = 1033.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_2cf0j")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 20.0
+offset_right = 2016.0
+offset_bottom = 341.0
+theme_override_colors/default_color = Color(0.101961, 0.00784314, 0.168627, 1)
+theme_override_fonts/normal_font = ExtResource("2_8j13c")
+theme_override_font_sizes/normal_font_size = 128
+text = "Hello Katsuboy! Welcome to the forest, hope you make it out in one piece!"

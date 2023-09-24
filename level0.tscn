@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmnob5au0h6p5"]
+[gd_scene load_steps=10 format=3 uid="uid://cmnob5au0h6p5"]
 
+[ext_resource type="Script" path="res://level0.gd" id="1_6e28t"]
 [ext_resource type="PackedScene" uid="uid://d2r0vwmkgn62w" path="res://Player.tscn" id="1_f0o84"]
 [ext_resource type="PackedScene" uid="uid://cm5lx7lkd4y7s" path="res://Environment/StaticTree.tscn" id="2_i87kr"]
 [ext_resource type="PackedScene" uid="uid://bkwj10icxt5ny" path="res://Snome.tscn" id="3_22553"]
@@ -19,6 +20,7 @@ material = SubResource("StandardMaterial3D_ixwcs")
 size = Vector3(120, 2, 120)
 
 [node name="Level0" type="Node3D"]
+script = ExtResource("1_6e28t")
 
 [node name="Player" parent="." instance=ExtResource("1_f0o84")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0611792, 0)
@@ -115,3 +117,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7234, 13.3145)
 
 [node name="KamiAxe4" parent="Items" instance=ExtResource("5_4ed2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8913, 1.97719, 0)
+
+[connection signal="dialogueSignal" from="NPCs/Frogness" to="." method="_on_frogness_dialogue_signal"]

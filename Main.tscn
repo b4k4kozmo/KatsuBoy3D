@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm0xtp5kknpig"]
+[gd_scene load_steps=7 format=3 uid="uid://bm0xtp5kknpig"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_iu3xl"]
 [ext_resource type="PackedScene" uid="uid://cmnob5au0h6p5" path="res://level0.tscn" id="2_0kcwx"]
 [ext_resource type="PackedScene" uid="uid://d3rwubp3v84g0" path="res://InventoryGui.tscn" id="4_l3yr5"]
 [ext_resource type="PackedScene" uid="uid://bf0t5wyx65krj" path="res://PauseGui.tscn" id="5_68p0f"]
+[ext_resource type="PackedScene" uid="uid://hnnvqtfsxqyu" path="res://DialogueGui.tscn" id="6_afh2p"]
 [ext_resource type="Script" path="res://UI.gd" id="7_llngi"]
 
 [node name="Main" type="Node"]
@@ -41,7 +42,12 @@ offset_bottom = 403.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DialogueGui" parent="UI" instance=ExtResource("6_afh2p")]
+
+[connection signal="dialogueState" from="Level0" to="." method="_on_level_0_dialogue_state"]
 [connection signal="closed" from="UI/PauseGui" to="." method="_on_pause_gui_closed"]
 [connection signal="opened" from="UI/PauseGui" to="." method="_on_pause_gui_opened"]
 [connection signal="closed" from="UI/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="UI/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[connection signal="closed" from="UI/DialogueGui" to="." method="_on_dialogue_gui_closed"]
+[connection signal="opened" from="UI/DialogueGui" to="." method="_on_dialogue_gui_opened"]
